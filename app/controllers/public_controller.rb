@@ -1,6 +1,8 @@
 class PublicController < ApplicationController
   def index
-    @location = request.location.country
+    @results = Geocoder.search(request.location)
+    @coordinates = @results.first.coordinates
+    @location = Geocoder.search(@coordinates.first)
     #@city = request.location.city
   end
 end
